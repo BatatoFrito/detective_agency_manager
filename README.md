@@ -1,5 +1,5 @@
 <h2>Setup</h2>
-<p>Create a .env file with the following variables: EMAIL_HOST(string), EMAIL_PORT(int), EMAIL_ACCOUNT(string), EMAIL_PASSWORD(string), DOMAIN(string), SECRET_KEY(string). Then set values their values.</p>
+<p>Create a .env file with the following variables: EMAIL_HOST(string), EMAIL_PORT(int), EMAIL_ACCOUNT(string), EMAIL_PASSWORD(string), DOMAIN(string), SECRET_KEY(string). Then set the variables their values.</p>
 <p>Install the libraries in the requirements.txt file.</p>
 <p>Website should be ready to go now!</p>
 
