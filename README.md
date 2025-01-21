@@ -1,5 +1,3 @@
-<h1>Detective Agency Manager</h1>
-
 <h2>Setup</h2>
 <p>Create a .env file with the following variables: EMAIL_HOST(string), EMAIL_PORT(int), EMAIL_ACCOUNT(string), EMAIL_PASSWORD(string), DOMAIN(string), SECRET_KEY(string). Then set values their values.</p>
 <p>Install the libraries in the requirements.txt file.</p>
