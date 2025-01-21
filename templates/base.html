@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Truth Agency - {% block title %}{% endblock title %}</title>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav>
+        <div class="wrapper-nav">
+          <ul id="nav-bar">
+            <li class="nav-li"><a href="{{ url_for('index') }}">Cases</a></li>
+            {% if current_user.role in [2, 3] %}
+            <li class="nav-li"><a href="{{ url_for('new_case') }}">New Case</a></li>
+            {% endif %}
+            <li class="nav-li"><a href="{{ url_for('user_page', uid=current_user._id) }}">Profile</a></li>
+            {% if current_user.role in [2, 3] %}
+            <li class="nav-li"><a href="{{ url_for('users') }}">Users</a></li>
+            {% endif %}
+            {% if current_user.role == 3 %}
+            <li class="nav-li"><a href="{{ url_for('approvals') }}">Pending Users</a></li>
+            {% endif %}
+            <li class="nav-li"><a href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </div>
+    </nav>
+    {% endif %}
+    {% block content %}{% endblock content %}
+</body>
+</html>

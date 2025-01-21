@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+{% for case in cases %}
+    <div class="case-list">
+        <a href="{{ url_for('case_page', cid=case._id) }}">
+        <div class="case-wrapper">
+                    <h1>{{ case.title }}</h1>
+                    <h2>{{ case.user.name }}</h2>
+                    <h3>{{ case.description }}</h3>
+        </div>
+        </a>
+    </div>
+{% endfor %}
+{% endblock content %}

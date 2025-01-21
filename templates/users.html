@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% if approvals %} (Pending){% endif %}{% endblock title %}
+
+{% block content %}
+{% if approvals %}
+    <div class="user-list">
+    {% for user in users %}
+        <a href="{{ url_for('user_page', uid=user._id) }}">{{ user.name }} {{ user.last_name }}</a>
+    {% endfor %}
+    </div>
+{% else %}
+    <div class="user-list">
+    {% for user in users %}
+        <a href="{{ url_for('user_page', uid=user._id) }}">{{ user.name }} {{ user.last_name }}</a>
+    {% endfor %}
+    </div>
+{% endif %}
+{% endblock content %}

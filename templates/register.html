@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+    <div class="form-wrapper">
+        <form class="user-form" action="{{ url_for(register_type) }}" method="POST">
+            <input type="text" name="name" placeholder="Name" required="required">
+            <input type="text" name="last_name" placeholder="Surname">
+            <input type="email" name="email" placeholder="E-mail" required="required">
+            <input type="password" name="password" placeholder="Password" required="required">
+            {% if register_type == 'register_detective' %}
+            <input type="text" name="detective_id" placeholder="Detective ID" required="required">
+            {% endif %}
+            <input type="submit" value="Register">
+        </form>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if register_type == 'register_guest' %}
+        <span><a href="{{ url_for('register_detective') }}">I'm a detective</a></span>
+    {% elif register_type == 'register_detective' %}
+        <span><a href="{{ url_for('register_guest') }}">I'm not a detective</a></span>
+    {% endif %}
+    <span><a href="{{ url_for('login') }}">Login</a></span>
+    </div>
+{% endblock content %}

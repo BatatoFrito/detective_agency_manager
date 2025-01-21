@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.name }}{% endblock title %}
+
+{% block content %}
+{% if current_user == user %}
+    <div class="form-wrapper">
+        <form class="user-form" action="{{ url_for('user_page', uid=user._id) }}" method="POST">
+            <input type="text" name="name" placeholder="Name" value="{{ user.name }}" required="required">
+            <input type="text" name="last_name" value="{{ user.last_name }}" placeholder="Surname">
+            <input type="email" name="email" placeholder="E-mail" value="{{ user.email }}" required="required">
+            {% if user.role == 1 %}
+                <p>Role: Guest </p>
+            {% elif user.role == 2 %}
+                <p>Role: Detective </p>
+            {% elif user.role == 3 %}
+                <p>Role: Detective (Boss)</p>
+            {% endif %}
+            {% if user.role in [2, 3] %}
+                <p>ID: {{ user.detective_id }}</p>
+            {% endif %}
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+{% else %}
+    <div class="form-wrapper">
+        <p>Name: {{ user.name }} </p>
+        <p>Surname: {{ user.last_name }} </p>
+        <p>E-mail: {{ user.email }}</p>
+        {% if user.role == 1 %}
+            <p>Role: Guest </p>
+        {% elif user.role == 2 %}
+            <p>Role: Detective </p>
+        {% elif user.role == 3 %}
+            <p>Role: Detective (Boss)</p>
+        {% endif %}
+        {% if user.role in [2, 3] %}
+            <p>ID: {{ user.detective_id }}</p>
+        {% endif %}
+        {% if current_user.role == 3 %}
+            {% if not user.approved %}
+                <form class="user-form" action="{{ url_for('approve', uid=user._id) }}" method="POST">
+                    <input type="submit" value="Approve">
+                </form>
+            {% endif %}
+            <form class="user-form" action="{{ url_for('delete_user', uid=user._id) }}" method="POST">
+                <input type="submit" value="Delete">
+            </form>
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock content %}
